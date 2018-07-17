@@ -1,0 +1,19 @@
+version: '2.0'
+
+services:
+
+  mail:
+    image: eaudeweb/docker.postfix.satellite:1.0.0
+    container_name: mail
+    restart: "unless-stopped"
+    ports:
+      - "127.0.0.1:8025:25"
+    env_file:
+      - .env
+    volumes:
+      - postfix-logs:/var/log
+      - postfix-data:/var/spool/postfix
+
+volumes:
+  postfix-logs:
+  postfix-data:
